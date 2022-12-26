@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "544616528191",
+    "project_id": "body-math",
+    "storage_bucket": "body-math.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544616528191:android:f9ead3ef92c14cdad6fb8a",
+        "android_client_info": {
+          "package_name": "com.example.bmi_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544616528191-d0insc6uc9n39njk9a5nsqdjb0l2oh1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfmM81hK6wwzOmkrCJ2I67SRbSIew0P50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544616528191-d0insc6uc9n39njk9a5nsqdjb0l2oh1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

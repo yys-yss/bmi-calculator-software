@@ -1,24 +1,33 @@
-import 'package:bmi_calculator/results_page.dart';
+import 'package:bmi_calculator/app_theme.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'input_page.dart';
-import 'calculator_brain.dart';
+import 'login_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() => runApp(BMICalculator());
-
-class BMICalculator extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        appBarTheme: AppBarTheme(color: Color(0xFF230C33)),
-        scaffoldBackgroundColor: Color(0xFF230C33),
-        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => InputPage(),
-      },
-    );
-  }
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(AuthWidget());
 }
 
+class AuthWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        home: Scaffold(
+          body: StreamBuilder<User?>(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Incorrect Email/Password'));
+              } else if (snapshot.hasData) {
+                return BMICalculator();
+              } else {
+                return LoginPage();
+              }
+            },
+          ),
+        ),
+      );
+}

@@ -20,11 +20,11 @@ const kLargeButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 const kResultTextStyle = TextStyle(
-  fontSize: 50.0,
+  fontSize: 30.0,
   fontWeight: FontWeight.w600,
 );
 const kCalculatedBMITextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 70.0,
   fontWeight: FontWeight.w600,
 );
 const kAdviceTextStyle = TextStyle(
@@ -34,4 +34,12 @@ const kBMITextStyle = TextStyle(
   fontSize: 25.0,
   color: Colors.green,
   fontWeight: FontWeight.bold,
+);
+const kInfoTextStyle = TextStyle(
+  fontSize: 20.0,
+  color: Color(0xFFbdb0e3),
+);
+const kLabelTextStyle = TextStyle(
+  fontSize: 16.0,
+  color: Color(0xFFFFFFFF),
 );

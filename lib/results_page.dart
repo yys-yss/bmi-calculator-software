@@ -2,15 +2,15 @@ import 'package:bmi_calculator/input_page.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
-
+import 'package:flutter_gif/flutter_gif.dart';
 
 class ResultsPage extends StatelessWidget {
-
   final String bmi;
   final Text resultText;
-  final String advice;
+  final Widget advice;
 
-  ResultsPage({required this.bmi, required this.resultText, required this.advice});
+  ResultsPage(
+      {required this.bmi, required this.resultText, required this.advice});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +19,17 @@ class ResultsPage extends StatelessWidget {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Container(
-              padding: EdgeInsets.only(left: 15.0),
-              child: Text(
-                'Your Result',
-                style: kResultTextStyle,
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 30.0),
+                child: Text(
+                  'Your Result',
+                  style: kResultTextStyle,
+                ),
               ),
             ),
           ),
@@ -49,19 +51,17 @@ class ResultsPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text(
-                      advice,
-                      style: kAdviceTextStyle,
-                      textAlign: TextAlign.center,
-                    ),
+                    child: advice,
                   ),
                 ],
               ),
             ),
           ),
-        BottomButton(onTap: () {
-          Navigator.pop(context);
-        }, text: 'CALCULATE AGAIN')
+          BottomButton(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              text: 'CALCULATE AGAIN')
         ],
       ),
     );

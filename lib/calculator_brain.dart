@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'constants.dart';
+
 class CalculatorBrain {
   final int height;
   final int weight;
@@ -71,19 +73,44 @@ class CalculatorBrain {
       );
     }
   }
-  String getAdvice() {
+
+  Widget getAdvice() {
     if (_bmi <= 25 && _bmi > 18.5) {
-      return 'You are doing well. Keep it up!';
+      return Text(
+        'You are doing well. Keep it up!',
+        style: kAdviceTextStyle,
+      );
     } else if (_bmi > 25 && _bmi <= 30) {
-      return 'You are slightly above normal weight. Maybe you could decrease the amount of fat in your diet.';
+      return Text(
+        'You are slightly above normal weight. Maybe you could decrease the amount of fat in your diet.',
+        style: kAdviceTextStyle,
+        textAlign: TextAlign.center,
+      );
     } else if (_bmi > 30 && _bmi <= 35) {
-      return 'You are starting to become Obese. Eat less and exercise more!';
+      return Text(
+        'You are starting to become Obese. Eat less and exercise more!',
+        style: kAdviceTextStyle,
+        textAlign: TextAlign.center,
+      );
     } else if (_bmi > 35 && _bmi <= 40) {
-      return 'You have a high body fat percentage. Go on extreme diets and exercise everyday!';
+      return Text(
+        'You have a high body fat percentage. Go on extreme diets and exercise everyday!',
+        style: kAdviceTextStyle,
+        textAlign: TextAlign.center,
+      );
     } else if (_bmi > 40) {
-      return 'You are extremely obese. Seek medical attention!';
+      return Expanded(
+        child: Container(
+          child: Image.asset('assets/images/toofat.gif'),
+          padding: EdgeInsets.only(bottom: 10),
+        ),
+      );
     } else {
-      return 'You have a lower than normal body weight. Try to eat more!';
+      return Text(
+        'You have a lower than normal body weight. Try to eat more!',
+        style: kAdviceTextStyle,
+        textAlign: TextAlign.center,
+      );
     }
   }
 }
