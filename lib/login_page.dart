@@ -1,20 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
-TextEditingController emailController = TextEditingController();
-TextEditingController passwordController = TextEditingController();
 
 class _LoginPageState extends State<LoginPage> {
-
-  @override
+    
+   @override
   Widget build(BuildContext context) {
+
+     final _emailController = TextEditingController();
+     final _passwordController = TextEditingController();
+
+     Future signIn() async {
+       showDialog(
+           context: context,
+           barrierDismissible: false,
+           builder: (context) => AuthWidget());
+       try {
+         await FirebaseAuth.instance.signInWithEmailAndPassword(
+           email: _emailController.text.trim(),
+           password: _passwordController.text.trim(),
+         );
+       } on FirebaseAuthException catch (e) {
+         print(e);
+       }
+       navigatorKey.currentState!.popUntil((route) => route.isFirst);
+     }
+
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(color: Color(0xFF230C33)),
         scaffoldBackgroundColor: Color(0xFF230C33),
@@ -29,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(16.0),
           child: Center(
             child: SingleChildScrollView(
+      padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Container(
                     child: TextField(
-                      controller: emailController,
+                      controller: _emailController,
                       decoration: const InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -65,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     child: TextField(
                       obscureText: true,
-                      controller: passwordController,
+                      controller: _passwordController,
                       decoration: const InputDecoration(
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
@@ -78,28 +99,29 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 30,
                   ),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        signIn();
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 70,
-                        child: Center(
-                          child: Text(
-                            'SIGN IN',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
+
+
+                  Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1.0),
+                  child: GestureDetector(
+                    onTap: signIn,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Center(
+                        child: Text(
+                          'SIGN IN',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        decoration: BoxDecoration(
-                          color: kBottomContainerColor,
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        color: kBottomContainerColor,
+                        borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
                   ),
+                  ),
+                  //
                 ],
               ),
             ),
@@ -110,6 +132,3 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Future signIn() async {
-  await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.toString().trim(), password: passwordController.toString().trim());
-}
