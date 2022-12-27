@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'card_content.dart';
-import 'input_page.dart';
-import 'main.dart';
 
 
 

@@ -6,6 +6,7 @@ import 'constants.dart';
 import 'rounded_button.dart';
 import 'calculator_brain.dart';
 import 'results_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -28,8 +29,26 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text('BMI CALCULATOR'),
+        toolbarHeight: 60,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: 30,
+              child: RawMaterialButton(
+                  constraints: BoxConstraints(),
+                  padding: EdgeInsets.all(0),
+                  child: Icon(Icons.arrow_back_ios_new_rounded),
+                  onPressed: () {
+                    setState(() {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.pop(context);
+                    });
+                  }),
+            ),
+            Expanded(child: Center(child: Text('OFFLINE MODE'))),
+          ],
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

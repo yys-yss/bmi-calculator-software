@@ -20,12 +20,8 @@ class AuthWidget extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Incorrect Email/Password'));
-          } else if (snapshot.hasData) {
-            return BMICalculator();
+          if (snapshot.hasData) {
+            return AppHome();
           } else {
             return LoginPage();
           }

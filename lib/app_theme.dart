@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 
-class BMICalculator extends StatelessWidget {
+class AppHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -16,6 +16,7 @@ dependencies:
   flutter_gif: ^0.0.4
   firebase_core: ^2.4.0
   firebase_auth: ^4.2.3
+  quickalert: ^1.0.1
 
 dev_dependencies:
   flutter_test:
