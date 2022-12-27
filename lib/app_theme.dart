@@ -17,7 +17,7 @@ class AppHome extends StatelessWidget {
         '/': (context) => SelectionPage(),
         '/offlineMode': (context) => InputPage(),
       },
-      initialRoute: '/offlineMode',
+      initialRoute: '/offlineMode', // initialRoute WILL BE '/' AFTER FINISHED MAKING SelectionPage()
     );
   }
 }
