@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/selection_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,3 +44,13 @@ const kLabelTextStyle = TextStyle(
   fontSize: 16.0,
   color: Color(0xFFFFFFFF),
 );
+const kSelectionTextStyle = TextStyle(
+  fontSize: 30.0,
+  color: Color(0xFFFFFFFF),
+  fontWeight: FontWeight.w600,
+);
+
+final kAppTheme = ThemeData.dark().copyWith(
+  appBarTheme: AppBarTheme(color: Color(0xFF230C33)),
+  scaffoldBackgroundColor: Color(0xFF230C33),
+  textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),);

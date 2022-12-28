@@ -1,4 +1,4 @@
-import 'package:bmi_calculator/input_page.dart';
+import 'package:bmi_calculator/offline_mode.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
@@ -16,6 +16,7 @@ class ResultsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(

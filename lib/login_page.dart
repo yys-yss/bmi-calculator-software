@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'constants.dart';
+import 'reusable_card.dart';
 import 'main.dart';
 
 class LoginPage extends StatefulWidget {
@@ -65,11 +66,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        appBarTheme: AppBarTheme(color: Color(0xFF230C33)),
-        scaffoldBackgroundColor: Color(0xFF230C33),
-        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
-      ),
+      theme: kAppTheme,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -83,52 +80,64 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Welcome Back!',
-                  style: kResultTextStyle,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Please enter your credentials',
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                ReusableCard(
+                  margin: EdgeInsets.all(0),
+                  padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                  color: Colors.transparent,
+                  cardChild: Column(
+                    children: [
+                      Text(
+                        'Welcome back',
+                        style: kResultTextStyle,
                       ),
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      labelStyle: kLabelTextStyle,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  child: TextField(
-                    obscureText: true,
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white)),
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      labelStyle: kLabelTextStyle,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        'Please enter your credentials',
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        child: TextField(
+                          controller: _emailController,
+                          cursorColor: Colors.white,
+                          decoration: const InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            border: OutlineInputBorder(),
+                            labelText: 'Email',
+                            labelStyle: kLabelTextStyle,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        child: TextField(
+                          obscureText: true,
+                          controller: _passwordController,
+                          cursorColor: Colors.white,
+                          decoration: const InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white)),
+                            border: OutlineInputBorder(),
+                            labelText: 'Password',
+                            labelStyle: kLabelTextStyle,
+                          ),
+                        ),
+                      ),
 
+                      //
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 1.0),
                   child: GestureDetector(
@@ -149,7 +158,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                //
               ],
             ),
           ),
