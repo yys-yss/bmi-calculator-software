@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/selection_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const kBottomContainerHeight = 80.0;
 const kActiveCardColor = Color(0xFF592E83);
@@ -20,9 +21,11 @@ const kLargeButtonTextStyle = TextStyle(
   fontSize: 20.0,
   fontWeight: FontWeight.bold,
 );
-const kResultTextStyle = TextStyle(
-  fontSize: 30.0,
-  fontWeight: FontWeight.w600,
+final kResultTextStyle = GoogleFonts.anton(
+  textStyle: TextStyle(
+    color: Colors.white,
+    fontSize: 40,
+  ),
 );
 const kCalculatedBMITextStyle = TextStyle(
   fontSize: 70.0,
@@ -53,4 +56,5 @@ const kSelectionTextStyle = TextStyle(
 final kAppTheme = ThemeData.dark().copyWith(
   appBarTheme: AppBarTheme(color: Color(0xFF230C33)),
   scaffoldBackgroundColor: Color(0xFF230C33),
-  textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),);
+  textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
+);

@@ -69,10 +69,6 @@ class _LoginPageState extends State<LoginPage> {
       theme: kAppTheme,
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('LOGIN PAGE'),
-        ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Center(

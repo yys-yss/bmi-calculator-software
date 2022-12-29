@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'reusable_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,12 +19,24 @@ class SelectionPage extends StatelessWidget {
               Expanded(
                 child: ReusableCard(
                   color: kActiveCardColor,
-                  cardChild: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [Text('BMI CALCULATOR',
-                    style: kSelectionTextStyle,),
-                    Icon(Icons.fitness_center,
-                    size: 35.0,),],
+                  cardChild: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'BMI CALCULATOR',
+                            style: kSelectionTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Icon(
+                          FontAwesomeIcons.dumbbell,
+                          size: 35.0,
+                        ),
+                      ],
+                    ),
                   ),
                   onPress: () {
                     Navigator.pushNamed(context, '/bmiCalculator');
@@ -33,21 +46,73 @@ class SelectionPage extends StatelessWidget {
               Expanded(
                 child: ReusableCard(
                   color: kActiveCardColor,
+                  cardChild: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'BODY FAT',
+                            style: kSelectionTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Icon(
+                          FontAwesomeIcons.percent,
+                          size: 35.0,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
                   color: kActiveCardColor,
+                  cardChild: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'IDEAL WEIGHT',
+                          style: kSelectionTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Icon(
+                        FontAwesomeIcons.weightScale,
+                        size: 35.0,
+                      ),
+                    ],
+                  ),
+                ),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
                   color: kActiveCardColor,
-                ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  color: kActiveCardColor,
+                  cardChild: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'CALORIE INTAKE',
+                            style: kSelectionTextStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Icon(
+                          FontAwesomeIcons.pizzaSlice,
+                          size: 35.0,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
