@@ -3,7 +3,7 @@ import 'package:bmi_calculator/offline_mode.dart';
 import 'package:flutter/material.dart';
 import 'selection_page.dart';
 import 'bmi_calculator.dart';
-
+import 'body_fat_calculator.dart';
 
 class AppHome extends StatelessWidget {
   @override
@@ -14,6 +14,7 @@ class AppHome extends StatelessWidget {
       routes: {
         '/': (context) => SelectionPage(),
         '/bmiCalculator': (context) => BMICalculator(),
+        '/bodyFatCalculator': (context) => BodyFatCalculator(),
         '/offlineMode': (context) => OfflineMode(),
       },
       initialRoute: '/',

@@ -65,6 +65,9 @@ class SelectionPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  onPress: () {
+                    Navigator.pushNamed(context, '/bodyFatCalculator');
+                  },
                 ),
               ),
               Expanded(
