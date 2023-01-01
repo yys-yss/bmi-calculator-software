@@ -185,7 +185,7 @@ class _IBWCalculatorState extends State<IBWCalculator> {
 }
 
 class ResultScreen extends StatelessWidget {
-  final double idealWeight;
+  double idealWeight;
   int weight;
 
 
