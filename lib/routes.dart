@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'pages/selection_page.dart';
 import 'pages/bmi_calculator.dart';
 import 'pages/body_fat_calculator.dart';
+import 'database_brain.dart';
 
-class AppHome extends StatelessWidget {
+
+class Routes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: kAppTheme,
       routes: {
-        '/': (context) => SelectionPage(),
+        '/': (context) => DatabaseBrain(),
         '/bmiCalculator': (context) => BMICalculator(),
         '/bodyFatCalculator': (context) => BodyFatCalculator(),
         '/offlineMode': (context) => OfflineMode(),
