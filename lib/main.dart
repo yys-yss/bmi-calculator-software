@@ -1,7 +1,7 @@
 import 'package:bmi_calculator/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //Testing branch stuff
 Future<void> main() async {

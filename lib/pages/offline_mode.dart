@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'card_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
-import 'rounded_button.dart';
-import 'calculator_brain.dart';
+import '../widges/card_content.dart';
+import '../widges/reusable_card.dart';
+import '../constants.dart';
+import '../widges/rounded_button.dart';
+import '../calculator_brain.dart';
 import 'results_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

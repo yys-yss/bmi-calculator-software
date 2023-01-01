@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'offline_mode.dart';
+import '../constants.dart';
+import '../pages/offline_mode.dart';
 
 class RoundIconButton extends StatelessWidget {
 
   final IconData iconData;
   final Function() onPressed;
-
   RoundIconButton({required this.iconData, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       child: Icon(iconData),
-      onPressed: onPressed,
+      onPressed: this.onPressed,
       shape: CircleBorder(),
       fillColor: kInactiveSliderColor,
       constraints: BoxConstraints.tightFor(

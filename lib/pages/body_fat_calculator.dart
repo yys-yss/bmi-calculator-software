@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'card_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
-import 'rounded_button.dart';
-import 'calculator_brain.dart';
+import '../widges/card_content.dart';
+import '../widges/reusable_card.dart';
+import '../constants.dart';
+import '../widges/rounded_button.dart';
+import '../calculator_brain.dart';
 import 'results_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'defines.dart';
+import '../defines.dart';
 class BodyFatCalculator extends StatefulWidget {
   @override
   _BodyFatCalculatorState createState() => _BodyFatCalculatorState();
@@ -21,9 +21,9 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
   int height = 170;
   int neck = 50;
   int weight = 60;
-  int waist = 80;
-  int hip = 90;
-  int bodyFat= 15;
+  int waist = 90;
+  int hip = 110;
+  int bodyFat = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +243,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                                     setState(() {
                                       hip++;
                                     });
-                                  }),
+                                  },),
                             ],
                           ),
                         ],

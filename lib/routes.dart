@@ -1,9 +1,9 @@
 import 'package:bmi_calculator/constants.dart';
-import 'package:bmi_calculator/offline_mode.dart';
+import 'package:bmi_calculator/pages/offline_mode.dart';
 import 'package:flutter/material.dart';
-import 'selection_page.dart';
-import 'bmi_calculator.dart';
-import 'body_fat_calculator.dart';
+import 'pages/selection_page.dart';
+import 'pages/bmi_calculator.dart';
+import 'pages/body_fat_calculator.dart';
 
 class AppHome extends StatelessWidget {
   @override
