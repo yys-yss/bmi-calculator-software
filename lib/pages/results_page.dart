@@ -2,7 +2,6 @@ import 'package:bmi_calculator/pages/offline_mode.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../widgets/reusable_card.dart';
-import 'package:flutter_gif/flutter_gif.dart';
 
 class ResultsPage extends StatelessWidget {
   final String bmi;

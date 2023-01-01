@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../widgets/card_content.dart';
 import '../widgets/reusable_card.dart';
 import '../constants.dart';
 import '../widgets/rounded_button.dart';
 import '../calculator_brain.dart';
 import 'results_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../defines.dart';
 class BodyFatCalculator extends StatefulWidget {
   @override

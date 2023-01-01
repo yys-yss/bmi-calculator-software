@@ -92,6 +92,9 @@ class SelectionPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                  onPress: () {
+                    Navigator.pushNamed(context, '/ibwCalculator');
+                  },
                 ),
               ),
               Expanded(

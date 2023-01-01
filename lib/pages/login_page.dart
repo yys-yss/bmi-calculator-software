@@ -4,7 +4,6 @@ import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../constants.dart';
 import '../widgets/reusable_card.dart';
-import '../main.dart';
 
 class LoginPage extends StatefulWidget {
   @override

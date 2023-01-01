@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
-import '../pages/offline_mode.dart';
 
 class RoundIconButton extends StatelessWidget {
 

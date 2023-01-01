@@ -6,7 +6,6 @@ import '../constants.dart';
 import '../widgets/rounded_button.dart';
 import '../calculator_brain.dart';
 import 'results_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class OfflineMode extends StatefulWidget {
   @override

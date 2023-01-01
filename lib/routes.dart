@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/pages/ibw_calculator.dart';
 import 'package:bmi_calculator/pages/offline_mode.dart';
 import 'package:flutter/material.dart';
 import 'pages/selection_page.dart';
@@ -14,9 +15,10 @@ class Routes extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: kAppTheme,
       routes: {
-        '/': (context) => DatabaseBrain(),
+        '/': (context) => SelectionPage(),
         '/bmiCalculator': (context) => BMICalculator(),
         '/bodyFatCalculator': (context) => BodyFatCalculator(),
+        '/ibwCalculator': (context) => IBWCalculator(),
         '/offlineMode': (context) => OfflineMode(),
       },
       initialRoute: '/',
