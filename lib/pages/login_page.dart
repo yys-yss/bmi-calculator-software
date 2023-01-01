@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../constants.dart';
-import '../widges/reusable_card.dart';
+import '../widgets/reusable_card.dart';
 import '../main.dart';
 
 class LoginPage extends StatefulWidget {

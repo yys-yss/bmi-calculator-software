@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
-import '../widges/reusable_card.dart';
+import '../widgets/reusable_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SelectionPage extends StatelessWidget {
