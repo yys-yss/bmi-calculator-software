@@ -119,38 +119,27 @@ class CalculatorBrain {
 
 
 class BodyFatCalculatorBrain {
-  Gender? selectedGender;
+  Gender? selectedGender = Gender.male;
+  int age = 18;
+  int height = 170;
+  int neck = 50;
   int weight = 60;
-  int wrist = 18;
   int waist = 80;
   int hip = 90;
-  int forearm = 25;
-
   late final double _bodyFat;
 
-  BodyFatCalculatorBrain({required this.weight, required this.wrist, required this.waist, required this.hip, required this.forearm, required this.selectedGender});
+  BodyFatCalculatorBrain({required this.height, required this.weight, required this.neck, required this.waist, required this.hip, required this.age, required this.selectedGender});
 // https://1techplus.blogspot.com/2016/07/c-code-to-calculate-body-fat-of-person.html
-  //178.816
-  //76.5
-  //102.316
+
   String calculateBodyFat() {
     if(selectedGender == Gender.male)
     {
-      double A1 = (weight * 1.082) + 94.42;
-      double A2 = (wrist) * 4.15;
-      double B = A1 - A2;
-      _bodyFat = weight - B;
+      _bodyFat = ((495)/(1.0324 - 0.19077 * (log(waist - neck) / ln10) + 0.15456 * (log(height) / ln10))) - 450;
       return _bodyFat.toStringAsFixed(1);
     }
     else
     {
-      double A1 = (weight * 0.732) + 8.987;
-      double A2 = (wrist) / 3.140;
-      double A3 = (waist) * 0.157;
-      double A4 = (hip) * 0.249;
-      double A5 = (forearm) * 0.434;
-      double B = A1+A2-A3-A4+A5;
-      _bodyFat = weight - B;
+      _bodyFat = ((495)/(1.29579 - 0.35004 * (log((waist + hip) - neck) / ln10) + 0.22100 * (log(height) / ln10))) - 450;
       return _bodyFat.toStringAsFixed(1);
     }
   }

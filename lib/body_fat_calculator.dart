@@ -16,12 +16,13 @@ class BodyFatCalculator extends StatefulWidget {
 
 
 class _BodyFatCalculatorState extends State<BodyFatCalculator> {
-  Gender? selectedGender = Gender.male;
+  Gender? selectedGender = Gender.female;
+  int age = 18;
+  int height = 170;
+  int neck = 50;
   int weight = 60;
-  int wrist = 18;
   int waist = 80;
   int hip = 90;
-  int forearm = 25;
   int bodyFat= 15;
 
   @override
@@ -40,53 +41,87 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: ReusableCard(
-                color: kActiveCardColor,
-                cardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'WEIGHT',
-                      style: kCardTextStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          weight.toString(),
-                          style: kHeavyTextStyle,
-                        ),
-                        Text(
-                          'KG',
-                          style: kCardTextStyle,
-                        )
-                      ],
-                    ),
-                    SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        trackHeight: 1.5,
-                        thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
-                      ),
-                      child: Slider(
-                        value: weight.toDouble(),
-                        min: 1.0,
-                        max: 250.0,
-                        activeColor: kActiveSliderColor,
-                        inactiveColor: kInactiveSliderColor,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            weight = newValue.round();
-                          });
-                        },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ReusableCard(
+                      color: kActiveCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "HEIGHT",
+                            style: kCardTextStyle,
+                          ),
+                          Text(
+                            height.toString(),
+                            style: kHeavyTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                iconData: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    height--;
+                                  });
+                                },
+                              ),
+                              SizedBox(width: 10),
+                              RoundIconButton(
+                                  iconData: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      height++;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: ReusableCard(
+                      color: kActiveCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "WEIGHT",
+                            style: kCardTextStyle,
+                          ),
+                          Text(
+                            weight.toString(),
+                            style: kHeavyTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                iconData: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                              ),
+                              SizedBox(width: 10),
+                              RoundIconButton(
+                                  iconData: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Expanded(
@@ -99,11 +134,11 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "WRIST",
+                              "NECK",
                               style: kCardTextStyle,
                             ),
                             Text(
-                              wrist.toString(),
+                              neck.toString(),
                               style: kHeavyTextStyle,
                             ),
                             Row(
@@ -113,7 +148,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                                   iconData: FontAwesomeIcons.minus,
                                   onPressed: () {
                                     setState(() {
-                                      wrist--;
+                                      neck--;
                                     });
                                   },
                                 ),
@@ -122,7 +157,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                                     iconData: FontAwesomeIcons.plus,
                                     onPressed: () {
                                       setState(() {
-                                        wrist++;
+                                        neck++;
                                       });
                                     }),
                               ],
@@ -222,11 +257,11 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "FOREARM",
+                            "AGE",
                             style: kCardTextStyle,
                           ),
                           Text(
-                            forearm.toString(),
+                            age.toString(),
                             style: kHeavyTextStyle,
                           ),
                           Row(
@@ -236,7 +271,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                                 iconData: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    forearm--;
+                                    age--;
                                   });
                                 },
                               ),
@@ -245,7 +280,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
                                   iconData: FontAwesomeIcons.plus,
                                   onPressed: () {
                                     setState(() {
-                                      forearm++;
+                                      age++;
                                     });
                                   }),
                             ],
@@ -260,7 +295,7 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
             BottomButton(
               onTap: () {
                 BodyFatCalculatorBrain bodyFatCalculatorBrain =
-                BodyFatCalculatorBrain(weight: weight, wrist: wrist, waist: waist, hip: hip, forearm: forearm, selectedGender: selectedGender);
+                BodyFatCalculatorBrain(height: height, weight: weight, age: age, waist: waist, hip: hip, neck: neck, selectedGender: selectedGender);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
