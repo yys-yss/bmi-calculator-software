@@ -2,9 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-import 'constants.dart';
-import 'reusable_card.dart';
-import 'main.dart';
+import '../constants.dart';
+import '../widgets/reusable_card.dart';
 
 class LoginPage extends StatefulWidget {
   @override

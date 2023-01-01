@@ -1,12 +1,9 @@
+import 'package:bmi_calculator/database_brain.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'card_content.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
-import 'rounded_button.dart';
-import 'calculator_brain.dart';
+import '../widgets/reusable_card.dart';
+import '../constants.dart';
+import '../calculator_brain.dart';
 import 'results_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class BMICalculator extends StatefulWidget {
   @override
@@ -18,12 +15,15 @@ enum Gender {
   female,
 }
 
+DatabaseBrain databaseBrain = DatabaseBrain();
+
 class _BMICalculatorState extends State<BMICalculator> {
   Gender? selectedGender;
   int height = 150;
   int weight = 60;
-  int age = 18;
+  int age = 20;
   String bmi = '25';
+  String? gender;
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +69,9 @@ class _BMICalculatorState extends State<BMICalculator> {
                       data: SliderTheme.of(context).copyWith(
                         trackHeight: 1.5,
                         thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
                         value: height.toDouble(),
@@ -119,9 +119,9 @@ class _BMICalculatorState extends State<BMICalculator> {
                       data: SliderTheme.of(context).copyWith(
                         trackHeight: 1.5,
                         thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
                         value: weight.toDouble(),
@@ -143,7 +143,7 @@ class _BMICalculatorState extends State<BMICalculator> {
             BottomButton(
               onTap: () {
                 CalculatorBrain calculatorBrain =
-                CalculatorBrain(height: height, weight: weight);
+                    CalculatorBrain(height: height, weight: weight);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
