@@ -217,8 +217,8 @@ class _OfflineModeState extends State<OfflineMode> {
             ),
             BottomButton(
               onTap: () {
-                CalculatorBrain calculatorBrain =
-                    CalculatorBrain(height: height, weight: weight);
+                BMICalculatorBrain calculatorBrain =
+                    BMICalculatorBrain(height: height, weight: weight);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

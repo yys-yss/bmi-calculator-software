@@ -10,12 +10,13 @@ class IBWCalculator extends StatefulWidget {
   State<IBWCalculator> createState() => _IBWCalculatorState();
 }
 
+// TODO: ysf - create methods in calculator_brain.dart instead of writing the formulas here.
 
 class _IBWCalculatorState extends State<IBWCalculator> {
   // Declare variables for height, weight, and gender
   int _height = 175; // Initial value for the height slider
   int _weight = 60;
-  bool _isMale = true;
+  bool _isMale = true; // TODO: ysf - We already have enum for gender in defines.dart, use that.
   late double _idealWeight;
 
   @override

@@ -142,8 +142,8 @@ class _BMICalculatorState extends State<BMICalculator> {
             ),
             BottomButton(
               onTap: () {
-                CalculatorBrain calculatorBrain =
-                    CalculatorBrain(height: height, weight: weight);
+                BMICalculatorBrain calculatorBrain =
+                    BMICalculatorBrain(height: height, weight: weight);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

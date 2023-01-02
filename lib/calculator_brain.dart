@@ -3,13 +3,13 @@ import 'dart:math';
 
 import 'constants.dart';
 import 'defines.dart';
-class CalculatorBrain {
+class BMICalculatorBrain {
   final int height;
   final int weight;
 
   late final double _bmi;
 
-  CalculatorBrain({required this.height, required this.weight});
+  BMICalculatorBrain({required this.height, required this.weight});
 
   String calculateBMI() {
     _bmi = weight / pow(height / 100, 2);
@@ -232,7 +232,7 @@ class BodyFatCalculatorBrain {
     if(selectedGender == Gender.male) {
       if (_bodyFat <= 0 && _bodyFat > 7) {
         return Text(
-          'Try to ear more.',
+          'Try to eat more.',
           style: kAdviceTextStyle,
           textAlign: TextAlign.center
         );

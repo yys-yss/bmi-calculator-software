@@ -6,15 +6,34 @@ import '../widgets/rounded_button.dart';
 import '../calculator_brain.dart';
 import 'results_page.dart';
 import '../defines.dart';
+import 'package:bmi_calculator/database_brain.dart';
+
 class BodyFatCalculator extends StatefulWidget {
   @override
   _BodyFatCalculatorState createState() => _BodyFatCalculatorState();
 }
 
-
-
 class _BodyFatCalculatorState extends State<BodyFatCalculator> {
-  Gender? selectedGender = Gender.female;
+  DatabaseBrain databaseBrain = DatabaseBrain();
+  String? gender;
+
+  @override
+  void initState() {
+    databaseBrain.getGender().then((value) {
+      if (value == 'male') {
+        selectedGender = Gender.male;
+      } else if (value == 'female') {
+        selectedGender = Gender.female;
+      }
+    }
+    );
+    databaseBrain.getAge().then((value) {
+      age = value;
+    });
+    super.initState();
+  }
+
+  Gender? selectedGender;
   int age = 18;
   int height = 170;
   int neck = 50;
@@ -126,43 +145,43 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
               child: Row(
                 children: [
                   Expanded(
-                      child: ReusableCard(
-                        color: kActiveCardColor,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "NECK",
-                              style: kCardTextStyle,
-                            ),
-                            Text(
-                              neck.toString(),
-                              style: kHeavyTextStyle,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                RoundIconButton(
-                                  iconData: FontAwesomeIcons.minus,
+                    child: ReusableCard(
+                      color: kActiveCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "NECK",
+                            style: kCardTextStyle,
+                          ),
+                          Text(
+                            neck.toString(),
+                            style: kHeavyTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                iconData: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    neck--;
+                                  });
+                                },
+                              ),
+                              SizedBox(width: 10),
+                              RoundIconButton(
+                                  iconData: FontAwesomeIcons.plus,
                                   onPressed: () {
                                     setState(() {
-                                      neck--;
+                                      neck++;
                                     });
-                                  },
-                                ),
-                                SizedBox(width: 10),
-                                RoundIconButton(
-                                    iconData: FontAwesomeIcons.plus,
-                                    onPressed: () {
-                                      setState(() {
-                                        neck++;
-                                      });
-                                    }),
-                              ],
-                            ),
-                          ],
-                        ),
+                                  }),
+                            ],
+                          ),
+                        ],
                       ),
+                    ),
                   ),
                   Expanded(
                     child: ReusableCard(
@@ -207,93 +226,56 @@ class _BodyFatCalculatorState extends State<BodyFatCalculator> {
               ),
             ),
             Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ReusableCard(
-                      color: kActiveCardColor,
-                      cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "HIP",
-                            style: kCardTextStyle,
-                          ),
-                          Text(
-                            hip.toString(),
-                            style: kHeavyTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    hip--;
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 10),
-                              RoundIconButton(
-                                  iconData: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      hip++;
-                                    });
-                                  },),
-                            ],
-                          ),
-                        ],
-                      ),
+              child: ReusableCard(
+                color: kActiveCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "HIP",
+                      style: kCardTextStyle,
                     ),
-                  ),
-                  Expanded(
-                    child: ReusableCard(
-                      color: kActiveCardColor,
-                      cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "AGE",
-                            style: kCardTextStyle,
-                          ),
-                          Text(
-                            age.toString(),
-                            style: kHeavyTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RoundIconButton(
-                                iconData: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    age--;
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 10),
-                              RoundIconButton(
-                                  iconData: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      age++;
-                                    });
-                                  }),
-                            ],
-                          ),
-                        ],
-                      ),
+                    Text(
+                      hip.toString(),
+                      style: kHeavyTextStyle,
                     ),
-                  )
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RoundIconButton(
+                          iconData: FontAwesomeIcons.minus,
+                          onPressed: () {
+                            setState(() {
+                              hip--;
+                            });
+                          },
+                        ),
+                        SizedBox(width: 10),
+                        RoundIconButton(
+                          iconData: FontAwesomeIcons.plus,
+                          onPressed: () {
+                            setState(() {
+                              hip++;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             BottomButton(
               onTap: () {
                 BodyFatCalculatorBrain bodyFatCalculatorBrain =
-                BodyFatCalculatorBrain(height: height, weight: weight, age: age, waist: waist, hip: hip, neck: neck, selectedGender: selectedGender);
+                    BodyFatCalculatorBrain(
+                        height: height,
+                        weight: weight,
+                        age: age,
+                        waist: waist,
+                        hip: hip,
+                        neck: neck,
+                        selectedGender: selectedGender);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
