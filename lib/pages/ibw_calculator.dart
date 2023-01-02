@@ -1,23 +1,37 @@
+import 'package:bmi_calculator/database_brain.dart';
 import 'package:flutter/material.dart';
-import '../constants.dart';
 import '../widgets/reusable_card.dart';
-import 'bmi_calculator.dart';
+import '../constants.dart';
+import '../calculator_brain.dart';
+import 'results_page.dart';
+import 'package:bmi_calculator/defines.dart';
 
 class IBWCalculator extends StatefulWidget {
-  const IBWCalculator({Key? key}) : super(key: key);
-
   @override
-  State<IBWCalculator> createState() => _IBWCalculatorState();
+  _IBWCalculatorState createState() => _IBWCalculatorState();
 }
 
-// TODO: ysf - create methods in calculator_brain.dart instead of writing the formulas here.
+DatabaseBrain databaseBrain = DatabaseBrain();
 
 class _IBWCalculatorState extends State<IBWCalculator> {
-  // Declare variables for height, weight, and gender
-  int _height = 175; // Initial value for the height slider
-  int _weight = 60;
-  bool _isMale = true; // TODO: ysf - We already have enum for gender in defines.dart, use that.
-  late double _idealWeight;
+
+  @override
+  void initState() {
+    databaseBrain.getGender().then((value) {
+      if (value == 'male') {
+        selectedGender = Gender.male;
+      } else if (value == 'female') {
+        selectedGender = Gender.female;
+      }
+    });
+    super.initState();
+  }
+
+  Gender? selectedGender;
+  int height = 150;
+  int weight = 60;
+  int age = 20;
+  String? gender;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +40,13 @@ class _IBWCalculatorState extends State<IBWCalculator> {
         return true;
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           toolbarHeight: 60,
-          title: Text('IDEAL WEIGHT CALCULATOR'),
+          title: Text('IDEAL WEIGHT'),
           centerTitle: true,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: ReusableCard(
@@ -51,11 +64,11 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          _height.toString(),
+                          height.toString(),
                           style: kHeavyTextStyle,
                         ),
                         Text(
-                          ' cm',
+                          'cm',
                           style: kCardTextStyle,
                         )
                       ],
@@ -64,19 +77,19 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                       data: SliderTheme.of(context).copyWith(
                         trackHeight: 1.5,
                         thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
-                        value: _height.toDouble(),
+                        value: height.toDouble(),
                         min: 60.0,
                         max: 250.0,
                         activeColor: kActiveSliderColor,
                         inactiveColor: kInactiveSliderColor,
                         onChanged: (double newValue) {
                           setState(() {
-                            _height = newValue.round();
+                            height = newValue.round();
                           });
                         },
                       ),
@@ -85,7 +98,6 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
             Expanded(
               child: ReusableCard(
                 color: kActiveCardColor,
@@ -102,7 +114,7 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          _weight.toString(),
+                          weight.toString(),
                           style: kHeavyTextStyle,
                         ),
                         Text(
@@ -115,19 +127,19 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                       data: SliderTheme.of(context).copyWith(
                         trackHeight: 1.5,
                         thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
+                            RoundSliderThumbShape(enabledThumbRadius: 10.0),
                         overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
                       ),
                       child: Slider(
-                        value: _weight.toDouble(),
+                        value: weight.toDouble(),
                         min: 30.0,
                         max: 200.0,
                         activeColor: kActiveSliderColor,
                         inactiveColor: kInactiveSliderColor,
                         onChanged: (double newValue) {
                           setState(() {
-                            _weight = newValue.round();
+                            weight = newValue.round();
                           });
                         },
                       ),
@@ -136,48 +148,24 @@ class _IBWCalculatorState extends State<IBWCalculator> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            // Text('Gender:'),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Radio(
-            //       value: true,
-            //       groupValue: _isMale,
-            //       onChanged: (bool? value) {
-            //         setState(() {
-            //           _isMale = value!;
-            //         });
-            //       },
-            //     ),
-            //     Text('Male'),
-            //     Radio(
-            //       value: false,
-            //       groupValue: _isMale,
-            //       onChanged: (bool? value) {
-            //         setState(() {
-            //           _isMale = value!;
-            //         });
-            //       },
-            //     ),
-            //     Text('Female'),
-            //   ],
-            // ),
-            SizedBox(height: 20.0),
             BottomButton(
               onTap: () {
-                 _idealWeight = _isMale
-                    ? 50 + 0.91 * (_height - 152.4)
-                    : 45.5 + 0.91 * (_height - 152.4) ;
+                IBWCalculatorBrain calculatorBrain = IBWCalculatorBrain(
+                    height: height,
+                    weight: weight,
+                    selectedGender: selectedGender);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultScreen(idealWeight: _idealWeight, weight: _weight,),
+                    builder: (context) => IBWResultsPage(
+                      ibw: calculatorBrain.calculateIBW(),
+                      resultText: calculatorBrain.getResult(),
                     ),
-                  );
+                  ),
+                );
               },
               text: 'CALCULATE',
-            ),
+            )
           ],
         ),
       ),
@@ -185,65 +173,31 @@ class _IBWCalculatorState extends State<IBWCalculator> {
   }
 }
 
-class ResultScreen extends StatelessWidget {
-  final double idealWeight;
-  int weight;
+class BottomButton extends StatelessWidget {
+  final Function()? onTap;
+  final String? text;
 
-
-
-  ResultScreen({Key? key, required this.idealWeight, required this.weight}) : super(key: key);
+  BottomButton({required this.onTap, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('IDEAL WEIGHT CALCULATOR'),
-      ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              child: Center(
-                child: Container(
-                  padding: EdgeInsets.only(top: 30.0),
-                  child: Text(
-                    'Your Result',
-                    style: kResultTextStyle,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 5,
-              child: ReusableCard(
-                color: kActiveCardColor,
-                cardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: Text(
-                          ' ${idealWeight.toStringAsFixed(1)} kg',
-                      style:kResultTextStyle,),
-                    ),
-                    Container(
-                      child: Text(
-                        'Need to lose ${ (weight- idealWeight).toStringAsFixed(1)} kg',
-                        style:kResultTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            BottomButton(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                text: 'CALCULATE AGAIN')
-          ]
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        child: Center(
+          child: Text(
+            text!,
+            style: kLargeButtonTextStyle,
+          ),
+        ),
+        padding: EdgeInsets.only(bottom: 5.0),
+        margin: EdgeInsets.only(top: 10),
+        width: double.infinity,
+        height: kBottomContainerHeight,
+        decoration: BoxDecoration(
+          color: kBottomContainerColor,
+          borderRadius: BorderRadius.circular(2.5),
+        ),
       ),
     );
   }

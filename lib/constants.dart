@@ -32,11 +32,6 @@ const kCalculatedBMITextStyle = TextStyle(
 const kAdviceTextStyle = TextStyle(
   fontSize: 25.0,
 );
-const kBMITextStyle = TextStyle(
-  fontSize: 25.0,
-  color: Colors.green,
-  fontWeight: FontWeight.bold,
-);
 const kInfoTextStyle = TextStyle(
   fontSize: 20.0,
   color: Color(0xFFbdb0e3),

@@ -222,7 +222,7 @@ class _OfflineModeState extends State<OfflineMode> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(
+                    builder: (context) => BMIResultsPage(
                       bmi: calculatorBrain.calculateBMI(),
                       resultText: calculatorBrain.getResult(),
                       advice: calculatorBrain.getAdvice(),

@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'constants.dart';
 import 'defines.dart';
+
 class BMICalculatorBrain {
   final int height;
   final int weight;
@@ -115,9 +116,6 @@ class BMICalculatorBrain {
   }
 }
 
-
-
-
 class BodyFatCalculatorBrain {
   Gender? selectedGender = Gender.male;
   int age = 18;
@@ -128,24 +126,38 @@ class BodyFatCalculatorBrain {
   int hip = 90;
   late final double _bodyFat;
 
-  BodyFatCalculatorBrain({required this.height, required this.weight, required this.neck, required this.waist, required this.hip, required this.age, required this.selectedGender});
+  BodyFatCalculatorBrain(
+      {required this.height,
+      required this.weight,
+      required this.neck,
+      required this.waist,
+      required this.hip,
+      required this.age,
+      required this.selectedGender});
+
 // https://1techplus.blogspot.com/2016/07/c-code-to-calculate-body-fat-of-person.html
 
   String calculateBodyFat() {
-    if(selectedGender == Gender.male)
-    {
-      _bodyFat = ((495)/(1.0324 - 0.19077 * (log(waist - neck) / ln10) + 0.15456 * (log(height) / ln10))) - 450;
+    if (selectedGender == Gender.male) {
+      _bodyFat = ((495) /
+              (1.0324 -
+                  0.19077 * (log(waist - neck) / ln10) +
+                  0.15456 * (log(height) / ln10))) -
+          450;
       return _bodyFat.toStringAsFixed(1);
-    }
-    else
-    {
-      _bodyFat = ((495)/(1.29579 - 0.35004 * (log((waist + hip) - neck) / ln10) + 0.22100 * (log(height) / ln10))) - 450;
+    } else {
+      _bodyFat = ((495) /
+              (1.29579 -
+                  0.35004 * (log((waist + hip) - neck) / ln10) +
+                  0.22100 * (log(height) / ln10))) -
+          450;
       return _bodyFat.toStringAsFixed(1);
     }
   }
+
 // https://tanita.eu/blog/healthy-body-fat-percentage
   Text getResult() {
-    if(selectedGender == Gender.male) {
+    if (selectedGender == Gender.male) {
       if (_bodyFat > 0 && _bodyFat < 7) {
         return Text(
           'UNDERFAT',
@@ -173,8 +185,7 @@ class BodyFatCalculatorBrain {
             fontWeight: FontWeight.bold,
           ),
         );
-      }
-      else {
+      } else {
         return Text(
           'OBESE',
           style: TextStyle(
@@ -184,9 +195,7 @@ class BodyFatCalculatorBrain {
           ),
         );
       }
-    }
-    else
-    {
+    } else {
       if (_bodyFat > 0 && _bodyFat < 23) {
         return Text(
           'UNDERFAT',
@@ -214,8 +223,7 @@ class BodyFatCalculatorBrain {
             fontWeight: FontWeight.bold,
           ),
         );
-      }
-      else {
+      } else {
         return Text(
           'OBESE',
           style: TextStyle(
@@ -229,62 +237,81 @@ class BodyFatCalculatorBrain {
   }
 
   Widget getAdvice() {
-    if(selectedGender == Gender.male) {
+    if (selectedGender == Gender.male) {
       if (_bodyFat <= 0 && _bodyFat > 7) {
-        return Text(
-          'Try to eat more.',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+        return Text('Try to eat more.',
+            style: kAdviceTextStyle, textAlign: TextAlign.center);
       } else if (_bodyFat > 7 && _bodyFat <= 22) {
-        return Text(
-          'You are doing well. Keep it up!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+        return Text('You are doing well. Keep it up!',
+            style: kAdviceTextStyle, textAlign: TextAlign.center);
       } else if (_bodyFat > 22 && _bodyFat <= 28) {
         return Text(
-          'You are starting to become Obese. Eat less and exercise more!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
-      }
-      else {
+            'You are starting to become Obese. Eat less and exercise more!',
+            style: kAdviceTextStyle,
+            textAlign: TextAlign.center);
+      } else {
         return Text(
-          'You have a high body fat percentage. Go on extreme diets and exercise everyday!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+            'You have a high body fat percentage. Go on extreme diets and exercise everyday!',
+            style: kAdviceTextStyle,
+            textAlign: TextAlign.center);
       }
-    }
-    else
-    {
+    } else {
       if (_bodyFat <= 0 && _bodyFat > 23) {
-        return Text(
-          'Try to ear more.',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+        return Text('Try to eat more.',
+            style: kAdviceTextStyle, textAlign: TextAlign.center);
       } else if (_bodyFat > 23 && _bodyFat <= 34) {
-        return Text(
-          'You are doing well. Keep it up!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+        return Text('You are doing well. Keep it up!',
+            style: kAdviceTextStyle, textAlign: TextAlign.center);
       } else if (_bodyFat > 34 && _bodyFat <= 40) {
         return Text(
-          'You are starting to become Obese. Eat less and exercise more!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
-      }
-      else {
+            'You are starting to become Obese. Eat less and exercise more!',
+            style: kAdviceTextStyle,
+            textAlign: TextAlign.center);
+      } else {
         return Text(
-          'You have a high body fat percentage. Go on extreme diets and exercise everyday!',
-          style: kAdviceTextStyle,
-          textAlign: TextAlign.center
-        );
+            'You have a high body fat percentage. Go on extreme diets and exercise everyday!',
+            style: kAdviceTextStyle,
+            textAlign: TextAlign.center);
       }
+    }
+  }
+}
+
+class IBWCalculatorBrain {
+  final int height;
+  final int weight;
+  final Gender? selectedGender;
+
+  IBWCalculatorBrain({required this.height, required this.weight, required this.selectedGender});
+
+  String calculateIBW() {
+    if (selectedGender == Gender.male) {
+      return (50 + 0.91 * (height - 152.4)).toStringAsFixed(1);
+    } else {
+      return (45.5 + 0.91 * (height - 152.4)).toStringAsFixed(1);
+    }
+  }
+
+  Text getResult() {
+    double result = weight - double.parse(calculateIBW());
+    if (result > 1) {
+      return Text((result.abs().toStringAsFixed(1)) + ' KG TO LOSE',
+      style: kHeavyTextStyle,
+      textAlign: TextAlign.center);
+    }
+    if (result < -1) {
+      return Text((result.abs().toStringAsFixed(1)) + ' KG TO GAIN',
+      style: kHeavyTextStyle,
+          textAlign: TextAlign.center);
+    }
+    else {
+      return Text('IDEAL WEIGHT ACHIEVED',
+      style: TextStyle(
+        fontSize: 50.0,
+        fontWeight: FontWeight.w900,
+        color: Colors.green
+      ),
+          textAlign: TextAlign.center);
     }
   }
 }

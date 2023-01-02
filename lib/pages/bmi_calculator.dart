@@ -4,15 +4,11 @@ import '../widgets/reusable_card.dart';
 import '../constants.dart';
 import '../calculator_brain.dart';
 import 'results_page.dart';
+import 'package:bmi_calculator/defines.dart';
 
 class BMICalculator extends StatefulWidget {
   @override
   _BMICalculatorState createState() => _BMICalculatorState();
-}
-
-enum Gender {
-  male,
-  female,
 }
 
 DatabaseBrain databaseBrain = DatabaseBrain();
@@ -147,7 +143,7 @@ class _BMICalculatorState extends State<BMICalculator> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ResultsPage(
+                    builder: (context) => BMIResultsPage(
                       bmi: calculatorBrain.calculateBMI(),
                       resultText: calculatorBrain.getResult(),
                       advice: calculatorBrain.getAdvice(),
