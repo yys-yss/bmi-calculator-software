@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'pages/selection_page.dart';
 import 'pages/bmi_calculator.dart';
 import 'pages/body_fat_calculator.dart';
+import 'pages/calorie_intake_calculator.dart';
 import 'database_brain.dart';
 
 
@@ -19,6 +20,7 @@ class Routes extends StatelessWidget {
         '/bmiCalculator': (context) => BMICalculator(),
         '/bodyFatCalculator': (context) => BodyFatCalculator(),
         '/ibwCalculator': (context) => IBWCalculator(),
+        '/CalorieIntakeCalculator': (context) => CalorieIntakeCalculator(),
         '/offlineMode': (context) => OfflineMode(),
       },
       initialRoute: '/',

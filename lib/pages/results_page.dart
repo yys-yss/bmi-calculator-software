@@ -193,3 +193,58 @@ class IBWResultsPage extends StatelessWidget {
     );
   }
 }
+
+class CalorieIntakeResultsPage extends StatelessWidget {
+  final Text resultText;
+  CalorieIntakeResultsPage(
+      {required this.resultText});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('IDEAL WEIGHT'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 30.0),
+                child: Text(
+                  'Your Result',
+                  style: kResultTextStyle,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: ReusableCard(
+              color: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Center(child: resultText),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          BottomButton(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              text: 'CALCULATE AGAIN')
+        ],
+      ),
+    );
+  }
+}
+
+

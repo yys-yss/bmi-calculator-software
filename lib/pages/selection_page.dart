@@ -119,6 +119,10 @@ class SelectionPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  onPress: ()
+                  {
+                    Navigator.pushNamed(context, '/CalorieIntakeCalculator');
+                  },
                 ),
               ),
             ],

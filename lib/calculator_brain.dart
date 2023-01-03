@@ -315,3 +315,29 @@ class IBWCalculatorBrain {
     }
   }
 }
+
+
+
+class CalorieIntakeCalculatorBrain {
+  final int height;
+  final int weight;
+  final int age;
+  final Gender? selectedGender;
+
+  CalorieIntakeCalculatorBrain({required this.height, required this.weight, required this.age, required this.selectedGender});
+
+  String calculateCalorieIntake() {
+    if (selectedGender == Gender.male) {
+      return (((66.5 + 13.8 * weight + 5 * height) - (6.8 * age)) * 1.2).toStringAsFixed(1);
+    } else {
+      return (((655.1 + 9.6 * weight + 1.9 * height) - (4.7 * age)) * 1.2).toStringAsFixed(1);
+    }
+  }
+
+  Text getResult() {
+    double result = double.parse(calculateCalorieIntake());
+      return Text('DAILY CALORIE INTAKE\n ${result.toStringAsFixed(0)} CALORIES',
+          style: kResultTextStyle,
+          textAlign: TextAlign.center);
+    }
+}
