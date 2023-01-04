@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/reusable_card.dart';
@@ -14,7 +15,7 @@ class BodyFatCalculator extends StatefulWidget {
 }
 
 class _BodyFatCalculatorState extends State<BodyFatCalculator> {
-  DatabaseBrain databaseBrain = DatabaseBrain();
+  DatabaseBrain databaseBrain = DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
   String? gender;
 
   @override

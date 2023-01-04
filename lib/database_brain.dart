@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class DatabaseBrain {
   late final String name;
   late final int age;
@@ -10,10 +11,10 @@ class DatabaseBrain {
 
   final PreferredSizeWidget? appBar;
   final Widget? body;
+  final String? userID;
 
-  DatabaseBrain({this.body, this.appBar});
+  DatabaseBrain({this.body, this.appBar, required this.userID});
 
-  final String? userID = FirebaseAuth.instance.currentUser?.uid.toString();
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -52,6 +53,8 @@ class DatabaseBrain {
     await _firestore.collection("users").doc(userID).get();
     Map<String, dynamic> data = ds.data() as Map<String, dynamic>;
     String gender = data["gender"] as String; // check if it null or not
+    print(userID);
+    print(gender);
     return gender;
   }
 

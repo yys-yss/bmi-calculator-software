@@ -1,25 +1,23 @@
 import 'package:bmi_calculator/database_brain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/reusable_card.dart';
 import '../constants.dart';
 import '../calculator_brain.dart';
 import 'results_page.dart';
-import 'package:bmi_calculator/defines.dart';
 
 class BMICalculator extends StatefulWidget {
   @override
   _BMICalculatorState createState() => _BMICalculatorState();
 }
 
-DatabaseBrain databaseBrain = DatabaseBrain();
+DatabaseBrain databaseBrain =
+    DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
 
 class _BMICalculatorState extends State<BMICalculator> {
-  Gender? selectedGender;
   int height = 150;
   int weight = 60;
-  int age = 20;
   String bmi = '25';
-  String? gender;
 
   @override
   Widget build(BuildContext context) {

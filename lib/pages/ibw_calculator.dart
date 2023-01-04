@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/database_brain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/reusable_card.dart';
 import '../constants.dart';
@@ -11,7 +12,7 @@ class IBWCalculator extends StatefulWidget {
   _IBWCalculatorState createState() => _IBWCalculatorState();
 }
 
-DatabaseBrain databaseBrain = DatabaseBrain();
+DatabaseBrain databaseBrain = DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
 
 class _IBWCalculatorState extends State<IBWCalculator> {
 

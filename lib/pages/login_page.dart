@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/pages/bmi_calculator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   @override
   Widget build(BuildContext context) {
     final _emailController = TextEditingController();

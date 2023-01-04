@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/database_brain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/reusable_card.dart';
 import '../constants.dart';
@@ -11,24 +12,31 @@ class CalorieIntakeCalculator extends StatefulWidget {
   _CalorieIntakeCalculator createState() => _CalorieIntakeCalculator();
 }
 
-DatabaseBrain databaseBrain = DatabaseBrain();
 
 class _CalorieIntakeCalculator extends State<CalorieIntakeCalculator> {
+
+DatabaseBrain databaseBrain = DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
 
   @override
   void initState() {
     databaseBrain.getGender().then((value) {
       if (value == 'male') {
-        selectedGender = Gender.male;
+        setState(() {
+          selectedGender = Gender.male;
+        });
       } else if (value == 'female') {
-        selectedGender = Gender.female;
+        setState(() {
+          selectedGender = Gender.female;
+        });
       }
+      print(selectedGender);
     });
     databaseBrain.getAge().then((value) {
       age = value;
     });
     super.initState();
   }
+
 
   Gender? selectedGender;
   int height = 150;
@@ -158,6 +166,7 @@ class _CalorieIntakeCalculator extends State<CalorieIntakeCalculator> {
                     weight: weight,
                     age: age,
                     selectedGender: selectedGender);
+                print(selectedGender);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

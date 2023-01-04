@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 import '../widgets/reusable_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'calorie_intake_calculator.dart';
 
 class SelectionPage extends StatelessWidget {
   @override
