@@ -337,7 +337,7 @@ class CalorieIntakeCalculatorBrain {
   Text getResult() {
     double result = double.parse(calculateCalorieIntake());
       return Text('DAILY CALORIE INTAKE\n ${result.toStringAsFixed(0)} CALORIES',
-          style: kResultTextStyle,
+          style: kHeavyTextStyle,
           textAlign: TextAlign.center);
     }
 }

@@ -24,6 +24,9 @@ class _CalorieIntakeCalculator extends State<CalorieIntakeCalculator> {
         selectedGender = Gender.female;
       }
     });
+    databaseBrain.getAge().then((value) {
+      age = value;
+    });
     super.initState();
   }
 
@@ -140,56 +143,6 @@ class _CalorieIntakeCalculator extends State<CalorieIntakeCalculator> {
                         onChanged: (double newValue) {
                           setState(() {
                             weight = newValue.round();
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              child: ReusableCard(
-                color: kActiveCardColor,
-                cardChild: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'AGE',
-                      style: kCardTextStyle,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          age.toString(),
-                          style: kHeavyTextStyle,
-                        ),
-                        Text(
-                          'years',
-                          style: kCardTextStyle,
-                        )
-                      ],
-                    ),
-                    SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        trackHeight: 1.5,
-                        thumbShape:
-                        RoundSliderThumbShape(enabledThumbRadius: 10.0),
-                        overlayShape:
-                        RoundSliderOverlayShape(overlayRadius: 30.0),
-                      ),
-                      child: Slider(
-                        value: age.toDouble(),
-                        min: 1.0,
-                        max: 150.0,
-                        activeColor: kActiveSliderColor,
-                        inactiveColor: kInactiveSliderColor,
-                        onChanged: (double newValue) {
-                          setState(() {
-                            age = newValue.round();
                           });
                         },
                       ),
