@@ -16,7 +16,6 @@ class BodyFatCalculator extends StatefulWidget {
 
 class _BodyFatCalculatorState extends State<BodyFatCalculator> {
   DatabaseBrain databaseBrain = DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
-  String? gender;
 
   @override
   void initState() {

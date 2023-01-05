@@ -14,6 +14,7 @@ class SelectionPage extends StatelessWidget {
         return false;
       },
       child: Scaffold(
+        backgroundColor: Color(0xFF230C33),
         body: SafeArea(
           child: Column(
             children: [
@@ -35,6 +36,7 @@ class SelectionPage extends StatelessWidget {
                         Icon(
                           FontAwesomeIcons.dumbbell,
                           size: 35.0,
+                          color: Colors.white,
                         ),
                       ],
                     ),
@@ -62,6 +64,7 @@ class SelectionPage extends StatelessWidget {
                         Icon(
                           FontAwesomeIcons.percent,
                           size: 35.0,
+                          color: Colors.white,
                         ),
                       ],
                     ),
@@ -89,6 +92,7 @@ class SelectionPage extends StatelessWidget {
                       Icon(
                         FontAwesomeIcons.weightScale,
                         size: 35.0,
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -116,6 +120,7 @@ class SelectionPage extends StatelessWidget {
                         Icon(
                           FontAwesomeIcons.pizzaSlice,
                           size: 35.0,
+                          color: Colors.white,
                         ),
                       ],
                     ),

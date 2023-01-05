@@ -26,6 +26,14 @@ class DatabaseBrain {
     return name;
   }
 
+  Future<bool> checkAdmin() async {
+    DocumentSnapshot ds =
+    await _firestore.collection("users").doc(userID).get();
+    Map<String, dynamic> data = ds.data() as Map<String, dynamic>;
+    bool admin = data["admin"] as bool; // check if it null or not
+    return admin;
+  }
+
   Future<int> getAge() async {
     DocumentSnapshot ds =
     await _firestore.collection("users").doc(userID).get();

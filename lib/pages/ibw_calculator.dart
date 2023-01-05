@@ -12,9 +12,9 @@ class IBWCalculator extends StatefulWidget {
   _IBWCalculatorState createState() => _IBWCalculatorState();
 }
 
-DatabaseBrain databaseBrain = DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
-
 class _IBWCalculatorState extends State<IBWCalculator> {
+  DatabaseBrain databaseBrain =
+      DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
 
   @override
   void initState() {

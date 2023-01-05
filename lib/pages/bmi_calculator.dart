@@ -11,10 +11,10 @@ class BMICalculator extends StatefulWidget {
   _BMICalculatorState createState() => _BMICalculatorState();
 }
 
-DatabaseBrain databaseBrain =
-    DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
 
 class _BMICalculatorState extends State<BMICalculator> {
+DatabaseBrain databaseBrain =
+    DatabaseBrain(userID: FirebaseAuth.instance.currentUser?.uid.toString());
   int height = 150;
   int weight = 60;
   String bmi = '25';

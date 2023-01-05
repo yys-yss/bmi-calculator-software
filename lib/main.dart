@@ -1,8 +1,12 @@
+import 'package:bmi_calculator/pages/admin_page.dart';
+import 'package:bmi_calculator/pages/selection_page.dart';
 import 'package:bmi_calculator/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 //Testing branch stuff
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +25,23 @@ class AuthWidget extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Routes();
+            // Get the user's document from the users collection
+            final uid = snapshot.data?.uid;
+            return StreamBuilder<DocumentSnapshot>(
+              stream: FirebaseFirestore.instance.collection('users').doc(uid).snapshots(),
+              builder: (context, userSnapshot) {
+                if (userSnapshot.hasData) {
+                  // Check the value of the admin field
+                  if (userSnapshot.data!['admin']) {
+                    return AdminPage();
+                  } else {
+                    return Routes();
+                  }
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            );
           } else {
             return LoginPage();
           }

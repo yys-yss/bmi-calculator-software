@@ -51,3 +51,14 @@ final kAppTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Color(0xFF230C33),
   textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
 );
+
+final kAdminTheme = ThemeData.dark().copyWith(
+  appBarTheme: AppBarTheme(color: Colors.blueGrey[800]),
+  scaffoldBackgroundColor: Colors.blueGrey[800],
+  textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white)),
+);
+
+final kAdminTextStyle = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.blueGrey[850],);
