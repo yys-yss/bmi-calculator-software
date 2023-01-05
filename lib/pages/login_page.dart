@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   @override
   Widget build(BuildContext context) {
     final _emailController = TextEditingController();
@@ -79,10 +78,14 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 ReusableCard(
                   margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.only(left: 5, right: 5, bottom: 5),
+                  padding: EdgeInsets.all(5),
                   color: Colors.transparent,
                   cardChild: Column(
                     children: [
+                      Container(
+                        child: Image.asset('assets/images/logo_foreground.png',
+                        scale: 0.5,),
+                      ),
                       Text(
                         'Welcome back',
                         style: kResultTextStyle,
